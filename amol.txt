@@ -16,3 +16,7 @@ for stackname in stacksummary_list:
             print(stacks_name ,"is Drifted")
             StackIdsList.append(stacks_name)
 print("Total Drifted Stacks are:",StackIdsList)
+
+
+
+amol
