@@ -1,0 +1,18 @@
+import boto3
+client=boto3.client('cloudformation')
+stack_dict= client.list_stacks()
+#print("Stack_dict is a type of :",type(stack_dict))
+#print("stack_dict is",stack_dict)
+stacksummary_list=stack_dict['StackSummaries']
+#print(stacksummary_list)
+StackIdsList= []
+print("Total Stacks are present in Account as follows:")
+for stackname in stacksummary_list:
+    stacks_name=stackname['StackName']
+    print(stacks_name)
+    stacks_state=stackname['DriftInformation']['StackDriftStatus']
+    for state in stacks_state:
+        if stacks_state == 'DRIFTED' and stacks_name not in StackIdsList :
+            print(stacks_name ,"is Drifted")
+            StackIdsList.append(stacks_name)
+print("Total Drifted Stacks are:",StackIdsList)
